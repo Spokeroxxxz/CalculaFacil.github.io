@@ -1,14 +1,20 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="description" content="CalculaFácil: calculadoras online gratuitas de matemática, porcentagem, regra de três, Pitágoras, descontos e conversões.">
+    <meta name="description"
+        content="CalculaFácil - calculadoras online gratuitas de porcentagem, regra de três, Bhaskara, Pitágoras, desconto e conversão de unidades.">
+
+    <meta name="keywords"
+        content="calculadora, porcentagem, regra de três, bhaskara, pitagoras, desconto, conversor de unidades">
 
     <title>CalculaFácil - Calculadoras Online</title>
 
     <style>
+
         * {
             box-sizing: border-box;
             margin: 0;
@@ -16,7 +22,7 @@
         }
 
         body {
-            font-family: Arial, sans-serif;
+            font-family: Arial, Helvetica, sans-serif;
             background: #f4f7fb;
             color: #1f2937;
             line-height: 1.6;
@@ -26,35 +32,41 @@
             background: linear-gradient(135deg, #2563eb, #4f46e5);
             color: white;
             text-align: center;
-            padding: 35px 15px;
+            padding: 45px 20px;
         }
 
         header h1 {
-            font-size: 34px;
-            margin-bottom: 8px;
+            font-size: 38px;
+            margin-bottom: 10px;
         }
 
         header p {
-            font-size: 17px;
+            font-size: 18px;
         }
 
         nav {
             background: white;
-            padding: 14px 10px;
-            text-align: center;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
             position: sticky;
             top: 0;
             z-index: 10;
-            overflow-x: auto;
-            white-space: nowrap;
         }
 
         nav a {
-            color: #2563eb;
             text-decoration: none;
+            color: #2563eb;
             font-weight: bold;
-            margin: 0 7px;
+            padding: 8px 12px;
+            border-radius: 8px;
+        }
+
+        nav a:hover {
+            background: #eff6ff;
         }
 
         .container {
@@ -65,12 +77,16 @@
 
         .intro {
             text-align: center;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
         }
 
         .intro h2 {
-            font-size: 28px;
+            font-size: 30px;
             margin-bottom: 8px;
+        }
+
+        .intro p {
+            color: #64748b;
         }
 
         .calculadoras {
@@ -81,8 +97,8 @@
 
         .card {
             background: white;
-            border-radius: 15px;
-            padding: 22px;
+            padding: 25px;
+            border-radius: 16px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.08);
         }
 
@@ -93,8 +109,7 @@
 
         .card p {
             color: #64748b;
-            font-size: 14px;
-            margin-bottom: 15px;
+            margin-bottom: 18px;
         }
 
         label {
@@ -117,7 +132,7 @@
         button {
             width: 100%;
             padding: 13px;
-            margin-top: 15px;
+            margin-top: 18px;
             border: none;
             border-radius: 8px;
             background: #2563eb;
@@ -127,24 +142,24 @@
             cursor: pointer;
         }
 
-        button:active {
-            transform: scale(0.98);
+        button:hover {
+            background: #1d4ed8;
         }
 
         .resultado {
-            margin-top: 15px;
-            padding: 13px;
+            margin-top: 18px;
+            padding: 14px;
             background: #eff6ff;
-            border-left: 4px solid #2563eb;
-            border-radius: 6px;
+            border-radius: 8px;
+            color: #1e40af;
             min-height: 20px;
         }
 
         .info {
             background: white;
-            margin-top: 25px;
+            margin-top: 30px;
             padding: 25px;
-            border-radius: 15px;
+            border-radius: 16px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.06);
         }
 
@@ -155,6 +170,7 @@
 
         .info p {
             margin-bottom: 20px;
+            color: #475569;
         }
 
         footer {
@@ -162,7 +178,7 @@
             background: #111827;
             color: white;
             text-align: center;
-            padding: 25px 15px;
+            padding: 30px 15px;
         }
 
         footer p {
@@ -170,315 +186,734 @@
         }
 
         @media (max-width: 600px) {
+
             header h1 {
-                font-size: 28px;
+                font-size: 30px;
             }
 
-            .container {
-                padding: 20px 12px;
+            header p {
+                font-size: 16px;
+            }
+
+            .card {
+                padding: 20px;
+            }
+
+            nav {
+                position: static;
             }
         }
+
     </style>
 </head>
 
+
 <body>
 
-<header>
-    <h1>🧮 CalculaFácil</h1>
-    <p>Calculadoras simples, rápidas e gratuitas</p>
-</header>
+    <header>
 
-<nav>
-    <a href="#porcentagem">Porcentagem</a>
-    <a href="#regra3">Regra de 3</a>
-    <a href="#pitagoras">Pitágoras</a>
-    <a href="#desconto">Desconto</a>
-    <a href="#conversor">Conversor</a>
-</nav>
+        <h1>🧮 CalculaFácil</h1>
 
-<main class="container">
+        <p>
+            Calculadoras online gratuitas, simples e rápidas
+        </p>
 
-    <section class="intro">
-        <h2>Calculadoras Online</h2>
-        <p>Resolva cálculos do dia a dia de forma rápida e gratuita.</p>
-    </section>
+    </header>
 
-    <!-- PORCENTAGEM -->
-    <section class="calculadoras">
 
-        <div class="card" id="porcentagem">
-            <h2>📊 Porcentagem</h2>
-            <p>Descubra quanto representa uma porcentagem de um número.</p>
+    <nav>
 
-            <label for="valorPorcentagem">Número:</label>
-            <input type="number" id="valorPorcentagem" placeholder="Ex: 200">
+        <a href="#porcentagem">Porcentagem</a>
 
-            <label for="percentual">Porcentagem (%):</label>
-            <input type="number" id="percentual" placeholder="Ex: 15">
+        <a href="#regra3">Regra de 3</a>
 
-            <button onclick="calcularPorcentagem()">Calcular</button>
+        <a href="#bhaskara">Bhaskara</a>
 
-            <div class="resultado" id="resultadoPorcentagem"></div>
-        </div>
+        <a href="#pitagoras">Pitágoras</a>
 
-        <!-- REGRA DE 3 -->
-        <div class="card" id="regra3">
-            <h2>🔢 Regra de 3</h2>
-            <p>Descubra o valor desconhecido de uma proporção.</p>
+        <a href="#desconto">Desconto</a>
 
-            <label for="valorA">Valor A:</label>
-            <input type="number" id="valorA" placeholder="Ex: 2">
+        <a href="#conversor">Conversor</a>
 
-            <label for="valorB">Valor B:</label>
-            <input type="number" id="valorB" placeholder="Ex: 10">
+    </nav>
 
-            <label for="valorC">Valor C:</label>
-            <input type="number" id="valorC" placeholder="Ex: 5">
 
-            <button onclick="calcularRegra3()">Calcular</button>
+    <main class="container">
 
-            <div class="resultado" id="resultadoRegra3"></div>
-        </div>
+        <section class="intro">
 
-        <!-- PITÁGORAS -->
-        <div class="card" id="pitagoras">
+            <h2>Calculadoras Online</h2>
+
+            <p>
+                Resolva cálculos de matemática e do dia a dia gratuitamente.
+            </p>
+
+        </section>
+
+
+        <section class="calculadoras">
+
+
+            <!-- PORCENTAGEM -->
+
+            <div class="card" id="porcentagem">
+
+                <h2>📊 Calculadora de Porcentagem</h2>
+
+                <p>
+                    Descubra quanto representa uma porcentagem de determinado número.
+                </p>
+
+                <label for="porcentagemValor">
+                    Número:
+                </label>
+
+                <input
+                    type="number"
+                    id="porcentagemValor"
+                    placeholder="Ex: 200"
+                >
+
+                <label for="porcentagemPercentual">
+                    Porcentagem:
+                </label>
+
+                <input
+                    type="number"
+                    id="porcentagemPercentual"
+                    placeholder="Ex: 15"
+                >
+
+                <button onclick="calcularPorcentagem()">
+                    Calcular
+                </button>
+
+                <div
+                    class="resultado"
+                    id="resultadoPorcentagem">
+                </div>
+
+            </div>
+
+
+
+            <!-- REGRA DE 3 -->
+
+            <div class="card" id="regra3">
+
+                <h2>🔢 Regra de 3</h2>
+
+                <p>
+                    Calcule o valor desconhecido de uma proporção.
+                </p>
+
+                <label>
+                    Valor A:
+                </label>
+
+                <input
+                    type="number"
+                    id="regraA"
+                    placeholder="Ex: 2"
+                >
+
+                <label>
+                    Valor B:
+                </label>
+
+                <input
+                    type="number"
+                    id="regraB"
+                    placeholder="Ex: 10"
+                >
+
+                <label>
+                    Valor C:
+                </label>
+
+                <input
+                    type="number"
+                    id="regraC"
+                    placeholder="Ex: 5"
+                >
+
+                <button onclick="calcularRegra3()">
+                    Calcular
+                </button>
+
+                <div
+                    class="resultado"
+                    id="resultadoRegra3">
+                </div>
+
+            </div>
+
+
+
+            <!-- BHASKARA -->
+
+            <div class="card" id="bhaskara">
+
+                <h2>📐 Bhaskara</h2>
+
+                <p>
+                    Resolva uma equação do segundo grau.
+                </p>
+
+                <p>
+                    Fórmula: ax² + bx + c = 0
+                </p>
+
+                <label>
+                    Valor de A:
+                </label>
+
+                <input
+                    type="number"
+                    id="bhaskaraA"
+                    placeholder="Ex: 1"
+                >
+
+                <label>
+                    Valor de B:
+                </label>
+
+                <input
+                    type="number"
+                    id="bhaskaraB"
+                    placeholder="Ex: -5"
+                >
+
+                <label>
+                    Valor de C:
+                </label>
+
+                <input
+                    type="number"
+                    id="bhaskaraC"
+                    placeholder="Ex: 6"
+                >
+
+                <button onclick="calcularBhaskara()">
+                    Calcular
+                </button>
+
+                <div
+                    class="resultado"
+                    id="resultadoBhaskara">
+                </div>
+
+            </div>
+
+
+
+            <!-- PITÁGORAS -->
+
+            <div class="card" id="pitagoras">
+
+                <h2>📏 Teorema de Pitágoras</h2>
+
+                <p>
+                    Calcule a hipotenusa de um triângulo retângulo.
+                </p>
+
+                <label>
+                    Cateto A:
+                </label>
+
+                <input
+                    type="number"
+                    id="catetoA"
+                    placeholder="Ex: 3"
+                >
+
+                <label>
+                    Cateto B:
+                </label>
+
+                <input
+                    type="number"
+                    id="catetoB"
+                    placeholder="Ex: 4"
+                >
+
+                <button onclick="calcularPitagoras()">
+                    Calcular
+                </button>
+
+                <div
+                    class="resultado"
+                    id="resultadoPitagoras">
+                </div>
+
+            </div>
+
+
+
+            <!-- DESCONTO -->
+
+            <div class="card" id="desconto">
+
+                <h2>💰 Calculadora de Desconto</h2>
+
+                <p>
+                    Descubra o preço final de um produto com desconto.
+                </p>
+
+                <label>
+                    Preço original:
+                </label>
+
+                <input
+                    type="number"
+                    id="preco"
+                    placeholder="Ex: 100"
+                >
+
+                <label>
+                    Desconto (%):
+                </label>
+
+                <input
+                    type="number"
+                    id="descontoPercentual"
+                    placeholder="Ex: 20"
+                >
+
+                <button onclick="calcularDesconto()">
+                    Calcular
+                </button>
+
+                <div
+                    class="resultado"
+                    id="resultadoDesconto">
+                </div>
+
+            </div>
+
+
+
+            <!-- CONVERSOR -->
+
+            <div class="card" id="conversor">
+
+                <h2>🔄 Conversor de Unidades</h2>
+
+                <p>
+                    Converta metros, centímetros e quilômetros.
+                </p>
+
+                <label>
+                    Valor:
+                </label>
+
+                <input
+                    type="number"
+                    id="valorConversao"
+                    placeholder="Ex: 100"
+                >
+
+                <label>
+                    De:
+                </label>
+
+                <select id="unidadeOrigem">
+
+                    <option value="m">
+                        Metro (m)
+                    </option>
+
+                    <option value="cm">
+                        Centímetro (cm)
+                    </option>
+
+                    <option value="km">
+                        Quilômetro (km)
+                    </option>
+
+                </select>
+
+
+                <label>
+                    Para:
+                </label>
+
+                <select id="unidadeDestino">
+
+                    <option value="m">
+                        Metro (m)
+                    </option>
+
+                    <option value="cm">
+                        Centímetro (cm)
+                    </option>
+
+                    <option value="km">
+                        Quilômetro (km)
+                    </option>
+
+                </select>
+
+
+                <button onclick="converterUnidade()">
+                    Converter
+                </button>
+
+                <div
+                    class="resultado"
+                    id="resultadoConversao">
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- INFORMAÇÕES -->
+
+        <section class="info">
+
+            <h2>📚 Sobre o CalculaFácil</h2>
+
+            <p>
+                O CalculaFácil foi criado para ajudar estudantes
+                e qualquer pessoa que precise realizar cálculos
+                de forma rápida e simples.
+            </p>
+
+
+            <h2>📊 Como calcular porcentagem?</h2>
+
+            <p>
+                Para descobrir uma porcentagem de um número,
+                multiplique o número pela porcentagem e divida
+                o resultado por 100.
+            </p>
+
+            <p>
+                Exemplo: 15% de 200 = 200 × 15 ÷ 100 = 30.
+            </p>
+
+
+            <h2>🔢 Como funciona a regra de 3?</h2>
+
+            <p>
+                A regra de três é utilizada para descobrir um
+                valor desconhecido quando existe uma relação
+                proporcional entre valores conhecidos.
+            </p>
+
+
             <h2>📐 Teorema de Pitágoras</h2>
-            <p>Calcule a hipotenusa de um triângulo retângulo.</p>
 
-            <label for="catetoA">Cateto A:</label>
-            <input type="number" id="catetoA" placeholder="Ex: 3">
+            <p>
+                O Teorema de Pitágoras afirma que, em um
+                triângulo retângulo, o quadrado da hipotenusa
+                é igual à soma dos quadrados dos catetos.
+            </p>
 
-            <label for="catetoB">Cateto B:</label>
-            <input type="number" id="catetoB" placeholder="Ex: 4">
+            <p>
+                Fórmula: a² = b² + c²
+            </p>
 
-            <button onclick="calcularPitagoras()">Calcular</button>
 
-            <div class="resultado" id="resultadoPitagoras"></div>
-        </div>
+            <h2>🧮 Equação do segundo grau</h2>
 
-        <!-- DESCONTO -->
-        <div class="card" id="desconto">
-            <h2>💰 Desconto</h2>
-            <p>Calcule o preço final de um produto com desconto.</p>
+            <p>
+                A fórmula de Bhaskara é utilizada para encontrar
+                as raízes de uma equação do segundo grau.
+            </p>
 
-            <label for="preco">Preço original:</label>
-            <input type="number" id="preco" placeholder="Ex: 100">
+            <p>
+                Fórmula: x = (-b ± √Δ) / 2a
+            </p>
 
-            <label for="percentualDesconto">Desconto (%):</label>
-            <input type="number" id="percentualDesconto" placeholder="Ex: 20">
+        </section>
 
-            <button onclick="calcularDesconto()">Calcular</button>
+    </main>
 
-            <div class="resultado" id="resultadoDesconto"></div>
-        </div>
 
-        <!-- CONVERSOR -->
-        <div class="card" id="conversor">
-            <h2>🔄 Conversor de Unidades</h2>
-            <p>Converta metros, centímetros e quilômetros.</p>
 
-            <label for="valorConversao">Valor:</label>
-            <input type="number" id="valorConversao" placeholder="Ex: 100">
-
-            <label for="unidadeOrigem">De:</label>
-            <select id="unidadeOrigem">
-                <option value="m">Metro (m)</option>
-                <option value="cm">Centímetro (cm)</option>
-                <option value="km">Quilômetro (km)</option>
-            </select>
-
-            <label for="unidadeDestino">Para:</label>
-            <select id="unidadeDestino">
-                <option value="m">Metro (m)</option>
-                <option value="cm">Centímetro (cm)</option>
-                <option value="km">Quilômetro (km)</option>
-            </select>
-
-            <button onclick="converterUnidade()">Converter</button>
-
-            <div class="resultado" id="resultadoConversao"></div>
-        </div>
-
-    </section>
-
-    <!-- INFORMAÇÕES -->
-    <section class="info">
-
-        <h2>📚 Como usar?</h2>
+    <footer>
 
         <p>
-            Escolha uma calculadora, coloque os valores solicitados
-            e pressione o botão para realizar o cálculo.
+            <strong>🧮 CalculaFácil</strong>
         </p>
-
-        <h2>📊 Porcentagem</h2>
 
         <p>
-            A porcentagem representa uma parte de um total dividido em 100.
-            Por exemplo, 10% de 200 é igual a 20.
+            Calculadoras online gratuitas.
         </p>
-
-        <h2>🔢 Regra de 3</h2>
 
         <p>
-            A regra de três é utilizada para descobrir um valor desconhecido
-            quando existe uma relação de proporção entre os valores.
+            © 2026 CalculaFácil
         </p>
 
-        <h2>📐 Teorema de Pitágoras</h2>
-
-        <p>
-            Em um triângulo retângulo, o quadrado da hipotenusa é igual
-            à soma dos quadrados dos catetos:
-            <strong>a² = b² + c²</strong>.
-        </p>
-
-    </section>
-
-</main>
-
-<footer>
-    <p><strong>🧮 CalculaFácil</strong></p>
-    <p>Calculadoras gratuitas para facilitar seus cálculos.</p>
-    <p>© 2026 CalculaFácil</p>
-</footer>
-
-<script>
-
-function calcularPorcentagem() {
-
-    const valor = Number(
-        document.getElementById("valorPorcentagem").value
-    );
-
-    const percentual = Number(
-        document.getElementById("percentual").value
-    );
-
-    if (isNaN(valor) || isNaN(percentual)) {
-        document.getElementById("resultadoPorcentagem").innerHTML =
-            "⚠️ Digite os dois valores.";
-        return;
-    }
-
-    const resultado = valor * percentual / 100;
-
-    document.getElementById("resultadoPorcentagem").innerHTML =
-        `${percentual}% de ${valor} = <strong>${resultado}</strong>`;
-}
+    </footer>
 
 
-function calcularRegra3() {
 
-    const A = Number(document.getElementById("valorA").value);
-    const B = Number(document.getElementById("valorB").value);
-    const C = Number(document.getElementById("valorC").value);
-
-    if (isNaN(A) || isNaN(B) || isNaN(C) || A === 0) {
-        document.getElementById("resultadoRegra3").innerHTML =
-            "⚠️ Digite valores válidos.";
-        return;
-    }
-
-    const X = (B * C) / A;
-
-    document.getElementById("resultadoRegra3").innerHTML =
-        `X = <strong>${X}</strong>`;
-}
+    <script>
 
 
-function calcularPitagoras() {
+        // PORCENTAGEM
 
-    const A = Number(document.getElementById("catetoA").value);
-    const B = Number(document.getElementById("catetoB").value);
+        function calcularPorcentagem() {
 
-    if (isNaN(A) || isNaN(B) || A < 0 || B < 0) {
-        document.getElementById("resultadoPitagoras").innerHTML =
-            "⚠️ Digite dois catetos válidos.";
-        return;
-    }
+            const valor =
+                Number(document.getElementById("porcentagemValor").value);
 
-    const hipotenusa = Math.sqrt((A * A) + (B * B));
-
-    document.getElementById("resultadoPitagoras").innerHTML =
-        `Hipotenusa = <strong>${hipotenusa.toFixed(2)}</strong>`;
-}
+            const percentual =
+                Number(document.getElementById("porcentagemPercentual").value);
 
 
-function calcularDesconto() {
+            if (
+                !Number.isFinite(valor) ||
+                !Number.isFinite(percentual)
+            ) {
 
-    const preco = Number(
-        document.getElementById("preco").value
-    );
+                document.getElementById(
+                    "resultadoPorcentagem"
+                ).innerHTML =
+                    "⚠️ Digite os dois valores.";
 
-    const desconto = Number(
-        document.getElementById("percentualDesconto").value
-    );
-
-    if (
-        isNaN(preco) ||
-        isNaN(desconto) ||
-        preco < 0 ||
-        desconto < 0 ||
-        desconto > 100
-    ) {
-        document.getElementById("resultadoDesconto").innerHTML =
-            "⚠️ Digite valores válidos.";
-        return;
-    }
-
-    const valorDesconto = preco * desconto / 100;
-    const precoFinal = preco - valorDesconto;
-
-    document.getElementById("resultadoDesconto").innerHTML =
-        `Desconto: <strong>R$ ${valorDesconto.toFixed(2)}</strong><br>
-         Preço final: <strong>R$ ${precoFinal.toFixed(2)}</strong>`;
-}
+                return;
+            }
 
 
-function converterUnidade() {
+            const resultado =
+                valor * percentual / 100;
 
-    const valor = Number(
-        document.getElementById("valorConversao").value
-    );
 
-    const origem =
-        document.getElementById("unidadeOrigem").value;
+            document.getElementById(
+                "resultadoPorcentagem"
+            ).innerHTML =
+                `${percentual}% de ${valor} = <strong>${resultado}</strong>`;
 
-    const destino =
-        document.getElementById("unidadeDestino").value;
+        }
 
-    if (isNaN(valor)) {
-        document.getElementById("resultadoConversao").innerHTML =
-            "⚠️ Digite um valor.";
-        return;
-    }
 
-    let metros;
 
-    if (origem === "m") {
-        metros = valor;
-    } else if (origem === "cm") {
-        metros = valor / 100;
-    } else {
-        metros = valor * 1000;
-    }
+        // REGRA DE 3
 
-    let resultado;
+        function calcularRegra3() {
 
-    if (destino === "m") {
-        resultado = metros;
-    } else if (destino === "cm") {
-        resultado = metros * 100;
-    } else {
-        resultado = metros / 1000;
-    }
+            const A =
+                Number(document.getElementById("regraA").value);
 
-    document.getElementById("resultadoConversao").innerHTML =
-        `${valor} ${origem} = <strong>${resultado}</strong> ${destino}`;
-}
+            const B =
+                Number(document.getElementById("regraB").value);
 
-</script>
+            const C =
+                Number(document.getElementById("regraC").value);
 
-</body>
-</html>
+
+            if (
+                !Number.isFinite(A) ||
+                !Number.isFinite(B) ||
+                !Number.isFinite(C) ||
+                A === 0
+            ) {
+
+                document.getElementById(
+                    "resultadoRegra3"
+                ).innerHTML =
+                    "⚠️ Digite valores válidos.";
+
+                return;
+            }
+
+
+            const X =
+                (B * C) / A;
+
+
+            document.getElementById(
+                "resultadoRegra3"
+            ).innerHTML =
+                `X = <strong>${X}</strong>`;
+
+        }
+
+
+
+        // BHASKARA
+
+        function calcularBhaskara() {
+
+            const a =
+                Number(document.getElementById("bhaskaraA").value);
+
+            const b =
+                Number(document.getElementById("bhaskaraB").value);
+
+            const c =
+                Number(document.getElementById("bhaskaraC").value);
+
+
+            if (
+                !Number.isFinite(a) ||
+                !Number.isFinite(b) ||
+                !Number.isFinite(c)
+            ) {
+
+                document.getElementById(
+                    "resultadoBhaskara"
+                ).innerHTML =
+                    "⚠️ Preencha todos os valores.";
+
+                return;
+            }
+
+
+            if (a === 0) {
+
+                document.getElementById(
+                    "resultadoBhaskara"
+                ).innerHTML =
+                    "⚠️ O valor de A não pode ser 0.";
+
+                return;
+            }
+
+
+            const delta =
+                (b * b) - (4 * a * c);
+
+
+            if (delta < 0) {
+
+                document.getElementById(
+                    "resultadoBhaskara"
+                ).innerHTML =
+                    `Δ = ${delta}<br>
+                    ❌ A equação não possui raízes reais.`;
+
+                return;
+            }
+
+
+            const raizDelta =
+                Math.sqrt(delta);
+
+
+            const x1 =
+                (-b + raizDelta) / (2 * a);
+
+            const x2 =
+                (-b - raizDelta) / (2 * a);
+
+
+            document.getElementById(
+                "resultadoBhaskara"
+            ).innerHTML =
+                `Δ = <strong>${delta}</strong><br>
+                x₁ = <strong>${x1}</strong><br>
+                x₂ = <strong>${x2}</strong>`;
+
+        }
+
+
+
+        // PITÁGORAS
+
+        function calcularPitagoras() {
+
+            const A =
+                Number(document.getElementById("catetoA").value);
+
+            const B =
+                Number(document.getElementById("catetoB").value);
+
+
+            if (
+                !Number.isFinite(A) ||
+                !Number.isFinite(B) ||
+                A < 0 ||
+                B < 0
+            ) {
+
+                document.getElementById(
+                    "resultadoPitagoras"
+                ).innerHTML =
+                    "⚠️ Digite dois catetos válidos.";
+
+                return;
+            }
+
+
+            const hipotenusa =
+                Math.sqrt((A * A) + (B * B));
+
+
+            document.getElementById(
+                "resultadoPitagoras"
+            ).innerHTML =
+                `a = √(${A}² + ${B}²)<br>
+                Hipotenusa = <strong>${hipotenusa.toFixed(2)}</strong>`;
+
+        }
+
+
+
+        // DESCONTO
+
+        function calcularDesconto() {
+
+            const preco =
+                Number(document.getElementById("preco").value);
+
+            const desconto =
+                Number(
+                    document.getElementById(
+                        "descontoPercentual"
+                    ).value
+                );
+
+
+            if (
+                !Number.isFinite(preco) ||
+                !Number.isFinite(desconto) ||
+                preco < 0 ||
+                desconto < 0 ||
+                desconto > 100
+            ) {
+
+                document.getElementById(
+                    "resultadoDesconto"
+                ).innerHTML =
+                    "⚠️ Digite valores válidos.";
+
+                return;
+            }
+
+
+            const valorDesconto =
+                preco * desconto / 100;
+
+
+            const precoFinal =
+                preco - valorDesconto;
+
+
+            document.getElementById(
+                "resultadoDesconto"
+            ).innerHTML =
+                `Valor do desconto:
+                <strong>R$ ${valorDesconto.toFixed(2)}</strong>
+                <br>
+                Preço final:
+                <strong>R$ ${precoFinal.toFixed(2)}</strong>`;
+
+        }
+
+
+
+        // CONVERSOR DE UNIDADES
+
+        function converterUnidade() {
+
+            const valor =
+                Number(
+          
