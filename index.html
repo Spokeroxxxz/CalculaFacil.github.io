@@ -1,919 +1,1344 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="CalculaFácil: calculadoras online gratuitas de porcentagem, regra de três, Bhaskara, Pitágoras, média, juros, áreas, conversores e muito mais.">
+  <meta name="keywords" content="calculadora online, porcentagem, regra de três, bhaskara, pitágoras, média escolar, juros, conversor de unidades">
+  <meta name="theme-color" content="#315eea">
+  <meta property="og:title" content="CalculaFácil - Calculadoras Online">
+  <meta property="og:description" content="Calculadoras simples, rápidas e gratuitas para estudos e tarefas do dia a dia.">
+  <meta property="og:type" content="website">
+  <title>CalculaFácil - Calculadoras Online Gratuitas</title>
 
-    <meta name="description"
-        content="CalculaFácil - calculadoras online gratuitas de porcentagem, regra de três, Bhaskara, Pitágoras, desconto e conversão de unidades.">
+  <style>
 
-    <meta name="keywords"
-        content="calculadora, porcentagem, regra de três, bhaskara, pitagoras, desconto, conversor de unidades">
+:root{
+  --primary:#5b5ff0; --primary2:#8b5cf6; --accent:#06b6d4;
+  --bg:#f6f7fb; --card:#fff; --text:#182033; --muted:#687386;
+  --border:#e4e8f0; --success:#138a57; --danger:#d14343;
+  --shadow:0 14px 40px rgba(25,35,70,.09);
+}
 
-    <title>CalculaFácil - Calculadoras Online</title>
+[data-theme="dark"]{
+  --bg:#0b1020; --card:#151b2e; --text:#f4f7ff; --muted:#aeb8ca;
+  --border:#29334b; --shadow:0 16px 45px rgba(0,0,0,.28);
+}
 
-    <style>
+*{box-sizing:border-box}
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+html{scroll-behavior:smooth}
 
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background: #f4f7fb;
-            color: #1f2937;
-            line-height: 1.6;
-        }
+body{
+  margin:0;
+  font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.55
+}
 
-        header {
-            background: linear-gradient(135deg, #2563eb, #4f46e5);
-            color: white;
-            text-align: center;
-            padding: 45px 20px;
-        }
+button,input,select{font:inherit}
 
-        header h1 {
-            font-size: 38px;
-            margin-bottom: 10px;
-        }
+button{cursor:pointer}
 
-        header p {
-            font-size: 18px;
-        }
+a{color:inherit}
 
-        nav {
-            background: white;
-            padding: 15px;
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            flex-wrap: wrap;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-            position: sticky;
-            top: 0;
-            z-index: 10;
-        }
+header{
+  position:relative;
+  overflow:hidden;
+  color:#fff;
+  padding:64px 18px 70px;
+  text-align:center;
+  background:
+    radial-gradient(circle at 15% 20%,rgba(255,255,255,.18),transparent 30%),
+    linear-gradient(135deg,var(--primary),var(--primary2));
+}
 
-        nav a {
-            text-decoration: none;
-            color: #2563eb;
-            font-weight: bold;
-            padding: 8px 12px;
-            border-radius: 8px;
-        }
+header:after{
+  content:"";
+  position:absolute;
+  left:-10%;
+  right:-10%;
+  bottom:-55px;
+  height:100px;
+  background:var(--bg);
+  border-radius:50% 50% 0 0/100% 100% 0 0
+}
 
-        nav a:hover {
-            background: #eff6ff;
-        }
+.logo{
+  font-size:clamp(2.3rem,8vw,4rem);
+  font-weight:900;
+  letter-spacing:-2px;
+  margin:0
+}
 
-        .container {
-            max-width: 1100px;
-            margin: auto;
-            padding: 25px 15px;
-        }
+header p{
+  font-size:clamp(1rem,4vw,1.25rem);
+  font-weight:700;
+  margin:12px auto 0;
+  max-width:680px
+}
 
-        .intro {
-            text-align: center;
-            margin-bottom: 30px;
-        }
+.topbar{
+  position:sticky;
+  top:0;
+  z-index:50;
+  background:color-mix(in srgb,var(--card) 92%,transparent);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border);
+  box-shadow:0 4px 18px rgba(0,0,0,.05)
+}
 
-        .intro h2 {
-            font-size: 30px;
-            margin-bottom: 8px;
-        }
+.nav{
+  max-width:1180px;
+  margin:auto;
+  display:flex;
+  align-items:center;
+  gap:6px;
+  overflow-x:auto;
+  white-space:nowrap;
+  padding:10px 14px
+}
 
-        .intro p {
-            color: #64748b;
-        }
+.nav a,.nav button{
+  border:0;
+  background:transparent;
+  text-decoration:none;
+  color:var(--primary);
+  font-weight:850;
+  padding:10px 12px;
+  border-radius:12px
+}
 
-        .calculadoras {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-        }
+.nav a:hover,.nav button:hover{
+  background:var(--bg)
+}
 
-        .card {
-            background: white;
-            padding: 25px;
-            border-radius: 16px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-        }
+.container{
+  max-width:1180px;
+  margin:auto;
+  padding:30px 16px 60px
+}
 
-        .card h2 {
-            color: #2563eb;
-            margin-bottom: 8px;
-        }
+.hero{
+  text-align:center;
+  padding:5px 0 12px
+}
 
-        .card p {
-            color: #64748b;
-            margin-bottom: 18px;
-        }
+.hero h1{
+  font-size:clamp(2rem,6vw,3.2rem);
+  margin:0 0 8px;
+  letter-spacing:-1px
+}
 
-        label {
-            display: block;
-            font-weight: bold;
-            margin-top: 12px;
-            margin-bottom: 5px;
-        }
+.hero p{
+  max-width:760px;
+  margin:auto;
+  color:var(--muted);
+  font-size:1.05rem
+}
 
-        input,
-        select {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #cbd5e1;
-            border-radius: 8px;
-            font-size: 16px;
-            background: white;
-        }
+.searchbox{
+  max-width:760px;
+  margin:24px auto 22px;
+  position:relative
+}
 
-        button {
-            width: 100%;
-            padding: 13px;
-            margin-top: 18px;
-            border: none;
-            border-radius: 8px;
-            background: #2563eb;
-            color: white;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-        }
+.searchbox input{
+  padding-left:48px
+}
 
-        button:hover {
-            background: #1d4ed8;
-        }
+.search-icon{
+  position:absolute;
+  left:16px;
+  top:50%;
+  transform:translateY(-50%);
+  opacity:.65
+}
 
-        .resultado {
-            margin-top: 18px;
-            padding: 14px;
-            background: #eff6ff;
-            border-radius: 8px;
-            color: #1e40af;
-            min-height: 20px;
-        }
+.quick{
+  display:flex;
+  justify-content:center;
+  gap:8px;
+  flex-wrap:wrap;
+  margin:0 auto 28px
+}
 
-        .info {
-            background: white;
-            margin-top: 30px;
-            padding: 25px;
-            border-radius: 16px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
-        }
+.quick button{
+  border:1px solid var(--border);
+  background:var(--card);
+  color:var(--text);
+  padding:9px 13px;
+  border-radius:999px;
+  font-weight:750
+}
 
-        .info h2 {
-            color: #2563eb;
-            margin-bottom: 8px;
-        }
+.quick button:hover{
+  border-color:var(--primary);
+  transform:translateY(-1px)
+}
 
-        .info p {
-            margin-bottom: 20px;
-            color: #475569;
-        }
+.stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+  margin:0 auto 28px;
+  max-width:760px
+}
 
-        footer {
-            margin-top: 40px;
-            background: #111827;
-            color: white;
-            text-align: center;
-            padding: 30px 15px;
-        }
+.stat{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:15px;
+  box-shadow:var(--shadow)
+}
 
-        footer p {
-            margin: 5px;
-        }
+.stat strong{
+  display:block;
+  font-size:1.35rem;
+  color:var(--primary)
+}
 
-        @media (max-width: 600px) {
+.stat span{
+  font-size:.84rem;
+  color:var(--muted)
+}
 
-            header h1 {
-                font-size: 30px;
-            }
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:18px
+}
 
-            header p {
-                font-size: 16px;
-            }
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:22px;
+  box-shadow:var(--shadow);
+  transition:transform .2s,box-shadow .2s,border-color .2s
+}
 
-            .card {
-                padding: 20px;
-            }
+.card:hover{
+  transform:translateY(-3px);
+  box-shadow:0 18px 45px rgba(25,35,70,.13);
+  border-color:color-mix(in srgb,var(--primary) 35%,var(--border))
+}
 
-            nav {
-                position: static;
-            }
-        }
+.card h2{
+  margin:0 0 8px;
+  font-size:1.32rem
+}
 
-    </style>
+.card .desc{
+  color:var(--muted);
+  margin:0 0 18px
+}
+
+label{
+  display:block;
+  font-weight:800;
+  margin:12px 0 6px
+}
+
+.row{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:10px
+}
+
+.actions{
+  display:flex;
+  gap:9px;
+  flex-wrap:wrap;
+  margin-top:15px
+}
+
+.actions button,.btn{
+  border:0;
+  border-radius:12px;
+  padding:11px 15px;
+  font-weight:850
+}
+
+.actions button:first-child,.btn.primary{
+  background:linear-gradient(135deg,var(--primary),var(--primary2));
+  color:#fff
+}
+
+.actions button:not(:first-child){
+  background:var(--bg);
+  color:var(--text);
+  border:1px solid var(--border)
+}
+
+input,select{
+  width:100%;
+  padding:13px 14px;
+  border:2px solid var(--border);
+  border-radius:12px;
+  background:var(--card);
+  color:var(--text);
+  outline:none;
+  transition:.2s
+}
+
+input:focus,select:focus{
+  border-color:var(--primary);
+  box-shadow:0 0 0 4px color-mix(in srgb,var(--primary) 13%,transparent)
+}
+
+.result{
+  min-height:22px;
+  margin-top:14px;
+  padding:12px 14px;
+  border-radius:12px;
+  font-weight:700
+}
+
+.result:empty{display:none}
+
+.result.success{
+  background:color-mix(in srgb,var(--success) 10%,var(--card));
+  color:var(--success)
+}
+
+.result.error{
+  background:color-mix(in srgb,var(--danger) 10%,var(--card));
+  color:var(--danger)
+}
+
+.section{
+  margin-top:34px;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:25px;
+  box-shadow:var(--shadow)
+}
+
+.section h2{margin-top:0}
+
+.section p{color:var(--muted)}
+
+.faq details{
+  border-top:1px solid var(--border);
+  padding:14px 0
+}
+
+.faq summary{
+  cursor:pointer;
+  font-weight:850
+}
+
+.hidden{display:none!important}
+
+.empty-state{
+  text-align:center;
+  color:var(--muted);
+  padding:35px;
+  display:none
+}
+
+#topBtn{
+  display:none;
+  position:fixed;
+  right:18px;
+  bottom:18px;
+  z-index:40;
+  border:0;
+  width:48px;
+  height:48px;
+  border-radius:50%;
+  background:linear-gradient(135deg,var(--primary),var(--primary2));
+  color:#fff;
+  font-size:1.25rem;
+  box-shadow:var(--shadow)
+}
+
+.toast{
+  position:fixed;
+  left:50%;
+  bottom:22px;
+  transform:translate(-50%,20px);
+  opacity:0;
+  pointer-events:none;
+  background:var(--text);
+  color:var(--card);
+  padding:12px 16px;
+  border-radius:12px;
+  font-weight:750;
+  z-index:100;
+  transition:.25s
+}
+
+.toast.show{
+  opacity:1;
+  transform:translate(-50%,0)
+}
+
+footer{
+  padding:35px 18px;
+  text-align:center;
+  border-top:1px solid var(--border);
+  color:var(--muted)
+}
+
+.footer-links{
+  display:flex;
+  justify-content:center;
+  gap:18px;
+  margin:10px
+}
+
+@media(max-width:760px){
+  .grid{grid-template-columns:1fr}
+  .stats{grid-template-columns:1fr 1fr 1fr}
+  .row{grid-template-columns:1fr}
+  .card{padding:18px}
+  .container{padding-top:20px}
+}
+
+@media(max-width:480px){
+  .stats{gap:7px}
+  .stat{padding:11px 6px}
+  .stat strong{font-size:1.1rem}
+  .stat span{font-size:.72rem}
+  .nav{padding-left:8px}
+}
+
+  </style>
 </head>
-
 
 <body>
 
-    <header>
+<header>
+  <h1 class="logo">🧮 CalculaFácil</h1>
+  <p>Calculadoras simples, rápidas e gratuitas</p>
+</header>
 
-        <h1>🧮 CalculaFácil</h1>
+<div class="topbar">
+  <nav class="nav" aria-label="Navegação principal">
+    <a href="#calculadoras">Calculadoras</a>
+    <a href="#explicacoes">Explicações</a>
+    <a href="#faq">FAQ</a>
+    <a href="#sobre">Sobre</a>
+    <button type="button" onclick="toggleTheme()" id="themeBtn">🌙 Tema</button>
+  </nav>
+</div>
 
-        <p>
-            Calculadoras online gratuitas, simples e rápidas
-        </p>
+<main class="container">
 
-    </header>
-
-
-    <nav>
-
-        <a href="#porcentagem">Porcentagem</a>
-
-        <a href="#regra3">Regra de 3</a>
-
-        <a href="#bhaskara">Bhaskara</a>
-
-        <a href="#pitagoras">Pitágoras</a>
-
-        <a href="#desconto">Desconto</a>
-
-        <a href="#conversor">Conversor</a>
-
-    </nav>
-
-
-    <main class="container">
-
-        <section class="intro">
-
-            <h2>Calculadoras Online</h2>
-
-            <p>
-                Resolva cálculos de matemática e do dia a dia gratuitamente.
-            </p>
-
-        </section>
-
-
-        <section class="calculadoras">
-
-
-            <!-- PORCENTAGEM -->
-
-            <div class="card" id="porcentagem">
-
-                <h2>📊 Calculadora de Porcentagem</h2>
-
-                <p>
-                    Descubra quanto representa uma porcentagem de determinado número.
-                </p>
-
-                <label for="porcentagemValor">
-                    Número:
-                </label>
-
-                <input
-                    type="number"
-                    id="porcentagemValor"
-                    placeholder="Ex: 200"
-                >
-
-                <label for="porcentagemPercentual">
-                    Porcentagem:
-                </label>
-
-                <input
-                    type="number"
-                    id="porcentagemPercentual"
-                    placeholder="Ex: 15"
-                >
-
-                <button onclick="calcularPorcentagem()">
-                    Calcular
-                </button>
-
-                <div
-                    class="resultado"
-                    id="resultadoPorcentagem">
-                </div>
-
-            </div>
-
-
-
-            <!-- REGRA DE 3 -->
-
-            <div class="card" id="regra3">
-
-                <h2>🔢 Regra de 3</h2>
-
-                <p>
-                    Calcule o valor desconhecido de uma proporção.
-                </p>
-
-                <label>
-                    Valor A:
-                </label>
-
-                <input
-                    type="number"
-                    id="regraA"
-                    placeholder="Ex: 2"
-                >
-
-                <label>
-                    Valor B:
-                </label>
-
-                <input
-                    type="number"
-                    id="regraB"
-                    placeholder="Ex: 10"
-                >
-
-                <label>
-                    Valor C:
-                </label>
-
-                <input
-                    type="number"
-                    id="regraC"
-                    placeholder="Ex: 5"
-                >
-
-                <button onclick="calcularRegra3()">
-                    Calcular
-                </button>
-
-                <div
-                    class="resultado"
-                    id="resultadoRegra3">
-                </div>
-
-            </div>
-
-
-
-            <!-- BHASKARA -->
-
-            <div class="card" id="bhaskara">
-
-                <h2>📐 Bhaskara</h2>
-
-                <p>
-                    Resolva uma equação do segundo grau.
-                </p>
-
-                <p>
-                    Fórmula: ax² + bx + c = 0
-                </p>
-
-                <label>
-                    Valor de A:
-                </label>
-
-                <input
-                    type="number"
-                    id="bhaskaraA"
-                    placeholder="Ex: 1"
-                >
-
-                <label>
-                    Valor de B:
-                </label>
-
-                <input
-                    type="number"
-                    id="bhaskaraB"
-                    placeholder="Ex: -5"
-                >
-
-                <label>
-                    Valor de C:
-                </label>
-
-                <input
-                    type="number"
-                    id="bhaskaraC"
-                    placeholder="Ex: 6"
-                >
-
-                <button onclick="calcularBhaskara()">
-                    Calcular
-                </button>
-
-                <div
-                    class="resultado"
-                    id="resultadoBhaskara">
-                </div>
-
-            </div>
-
-
-
-            <!-- PITÁGORAS -->
-
-            <div class="card" id="pitagoras">
-
-                <h2>📏 Teorema de Pitágoras</h2>
-
-                <p>
-                    Calcule a hipotenusa de um triângulo retângulo.
-                </p>
-
-                <label>
-                    Cateto A:
-                </label>
-
-                <input
-                    type="number"
-                    id="catetoA"
-                    placeholder="Ex: 3"
-                >
-
-                <label>
-                    Cateto B:
-                </label>
-
-                <input
-                    type="number"
-                    id="catetoB"
-                    placeholder="Ex: 4"
-                >
-
-                <button onclick="calcularPitagoras()">
-                    Calcular
-                </button>
-
-                <div
-                    class="resultado"
-                    id="resultadoPitagoras">
-                </div>
-
-            </div>
-
-
-
-            <!-- DESCONTO -->
-
-            <div class="card" id="desconto">
-
-                <h2>💰 Calculadora de Desconto</h2>
-
-                <p>
-                    Descubra o preço final de um produto com desconto.
-                </p>
-
-                <label>
-                    Preço original:
-                </label>
-
-                <input
-                    type="number"
-                    id="preco"
-                    placeholder="Ex: 100"
-                >
-
-                <label>
-                    Desconto (%):
-                </label>
-
-                <input
-                    type="number"
-                    id="descontoPercentual"
-                    placeholder="Ex: 20"
-                >
-
-                <button onclick="calcularDesconto()">
-                    Calcular
-                </button>
-
-                <div
-                    class="resultado"
-                    id="resultadoDesconto">
-                </div>
-
-            </div>
-
-
-
-            <!-- CONVERSOR -->
-
-            <div class="card" id="conversor">
-
-                <h2>🔄 Conversor de Unidades</h2>
-
-                <p>
-                    Converta metros, centímetros e quilômetros.
-                </p>
-
-                <label>
-                    Valor:
-                </label>
-
-                <input
-                    type="number"
-                    id="valorConversao"
-                    placeholder="Ex: 100"
-                >
-
-                <label>
-                    De:
-                </label>
-
-                <select id="unidadeOrigem">
-
-                    <option value="m">
-                        Metro (m)
-                    </option>
-
-                    <option value="cm">
-                        Centímetro (cm)
-                    </option>
-
-                    <option value="km">
-                        Quilômetro (km)
-                    </option>
-
-                </select>
-
-
-                <label>
-                    Para:
-                </label>
-
-                <select id="unidadeDestino">
-
-                    <option value="m">
-                        Metro (m)
-                    </option>
-
-                    <option value="cm">
-                        Centímetro (cm)
-                    </option>
-
-                    <option value="km">
-                        Quilômetro (km)
-                    </option>
-
-                </select>
-
-
-                <button onclick="converterUnidade()">
-                    Converter
-                </button>
-
-                <div
-                    class="resultado"
-                    id="resultadoConversao">
-                </div>
-
-            </div>
-
-
-        </section>
-
-
-
-        <!-- INFORMAÇÕES -->
-
-        <section class="info">
-
-            <h2>📚 Sobre o CalculaFácil</h2>
-
-            <p>
-                O CalculaFácil foi criado para ajudar estudantes
-                e qualquer pessoa que precise realizar cálculos
-                de forma rápida e simples.
-            </p>
-
-
-            <h2>📊 Como calcular porcentagem?</h2>
-
-            <p>
-                Para descobrir uma porcentagem de um número,
-                multiplique o número pela porcentagem e divida
-                o resultado por 100.
-            </p>
-
-            <p>
-                Exemplo: 15% de 200 = 200 × 15 ÷ 100 = 30.
-            </p>
-
-
-            <h2>🔢 Como funciona a regra de 3?</h2>
-
-            <p>
-                A regra de três é utilizada para descobrir um
-                valor desconhecido quando existe uma relação
-                proporcional entre valores conhecidos.
-            </p>
-
-
-            <h2>📐 Teorema de Pitágoras</h2>
-
-            <p>
-                O Teorema de Pitágoras afirma que, em um
-                triângulo retângulo, o quadrado da hipotenusa
-                é igual à soma dos quadrados dos catetos.
-            </p>
-
-            <p>
-                Fórmula: a² = b² + c²
-            </p>
-
-
-            <h2>🧮 Equação do segundo grau</h2>
-
-            <p>
-                A fórmula de Bhaskara é utilizada para encontrar
-                as raízes de uma equação do segundo grau.
-            </p>
-
-            <p>
-                Fórmula: x = (-b ± √Δ) / 2a
-            </p>
-
-        </section>
-
-    </main>
-
-
-
-    <footer>
-
-        <p>
-            <strong>🧮 CalculaFácil</strong>
-        </p>
-
-        <p>
-            Calculadoras online gratuitas.
-        </p>
-
-        <p>
-            © 2026 CalculaFácil
-        </p>
-
-    </footer>
-
-
-
-    <script>
-
-
-        // PORCENTAGEM
-
-        function calcularPorcentagem() {
-
-            const valor =
-                Number(document.getElementById("porcentagemValor").value);
-
-            const percentual =
-                Number(document.getElementById("porcentagemPercentual").value);
-
-
-            if (
-                !Number.isFinite(valor) ||
-                !Number.isFinite(percentual)
-            ) {
-
-                document.getElementById(
-                    "resultadoPorcentagem"
-                ).innerHTML =
-                    "⚠️ Digite os dois valores.";
-
-                return;
-            }
-
-
-            const resultado =
-                valor * percentual / 100;
-
-
-            document.getElementById(
-                "resultadoPorcentagem"
-            ).innerHTML =
-                `${percentual}% de ${valor} = <strong>${resultado}</strong>`;
-
-        }
-
-
-
-        // REGRA DE 3
-
-        function calcularRegra3() {
-
-            const A =
-                Number(document.getElementById("regraA").value);
-
-            const B =
-                Number(document.getElementById("regraB").value);
-
-            const C =
-                Number(document.getElementById("regraC").value);
-
-
-            if (
-                !Number.isFinite(A) ||
-                !Number.isFinite(B) ||
-                !Number.isFinite(C) ||
-                A === 0
-            ) {
-
-                document.getElementById(
-                    "resultadoRegra3"
-                ).innerHTML =
-                    "⚠️ Digite valores válidos.";
-
-                return;
-            }
-
-
-            const X =
-                (B * C) / A;
-
-
-            document.getElementById(
-                "resultadoRegra3"
-            ).innerHTML =
-                `X = <strong>${X}</strong>`;
-
-        }
-
-
-
-        // BHASKARA
-
-        function calcularBhaskara() {
-
-            const a =
-                Number(document.getElementById("bhaskaraA").value);
-
-            const b =
-                Number(document.getElementById("bhaskaraB").value);
-
-            const c =
-                Number(document.getElementById("bhaskaraC").value);
-
-
-            if (
-                !Number.isFinite(a) ||
-                !Number.isFinite(b) ||
-                !Number.isFinite(c)
-            ) {
-
-                document.getElementById(
-                    "resultadoBhaskara"
-                ).innerHTML =
-                    "⚠️ Preencha todos os valores.";
-
-                return;
-            }
-
-
-            if (a === 0) {
-
-                document.getElementById(
-                    "resultadoBhaskara"
-                ).innerHTML =
-                    "⚠️ O valor de A não pode ser 0.";
-
-                return;
-            }
-
-
-            const delta =
-                (b * b) - (4 * a * c);
-
-
-            if (delta < 0) {
-
-                document.getElementById(
-                    "resultadoBhaskara"
-                ).innerHTML =
-                    `Δ = ${delta}<br>
-                    ❌ A equação não possui raízes reais.`;
-
-                return;
-            }
-
-
-            const raizDelta =
-                Math.sqrt(delta);
-
-
-            const x1 =
-                (-b + raizDelta) / (2 * a);
-
-            const x2 =
-                (-b - raizDelta) / (2 * a);
-
-
-            document.getElementById(
-                "resultadoBhaskara"
-            ).innerHTML =
-                `Δ = <strong>${delta}</strong><br>
-                x₁ = <strong>${x1}</strong><br>
-                x₂ = <strong>${x2}</strong>`;
-
-        }
-
-
-
-        // PITÁGORAS
-
-        function calcularPitagoras() {
-
-            const A =
-                Number(document.getElementById("catetoA").value);
-
-            const B =
-                Number(document.getElementById("catetoB").value);
-
-
-            if (
-                !Number.isFinite(A) ||
-                !Number.isFinite(B) ||
-                A < 0 ||
-                B < 0
-            ) {
-
-                document.getElementById(
-                    "resultadoPitagoras"
-                ).innerHTML =
-                    "⚠️ Digite dois catetos válidos.";
-
-                return;
-            }
-
-
-            const hipotenusa =
-                Math.sqrt((A * A) + (B * B));
-
-
-            document.getElementById(
-                "resultadoPitagoras"
-            ).innerHTML =
-                `a = √(${A}² + ${B}²)<br>
-                Hipotenusa = <strong>${hipotenusa.toFixed(2)}</strong>`;
-
-        }
-
-
-
-        // DESCONTO
-
-        function calcularDesconto() {
-
-            const preco =
-                Number(document.getElementById("preco").value);
-
-            const desconto =
-                Number(
-                    document.getElementById(
-                        "descontoPercentual"
-                    ).value
-                );
-
-
-            if (
-                !Number.isFinite(preco) ||
-                !Number.isFinite(desconto) ||
-                preco < 0 ||
-                desconto < 0 ||
-                desconto > 100
-            ) {
-
-                document.getElementById(
-                    "resultadoDesconto"
-                ).innerHTML =
-                    "⚠️ Digite valores válidos.";
-
-                return;
-            }
-
-
-            const valorDesconto =
-                preco * desconto / 100;
-
-
-            const precoFinal =
-                preco - valorDesconto;
-
-
-            document.getElementById(
-                "resultadoDesconto"
-            ).innerHTML =
-                `Valor do desconto:
-                <strong>R$ ${valorDesconto.toFixed(2)}</strong>
-                <br>
-                Preço final:
-                <strong>R$ ${precoFinal.toFixed(2)}</strong>`;
-
-        }
-
-
-
-        // CONVERSOR DE UNIDADES
-
-        function converterUnidade() {
-
-            const valor =
-                Number(
-          
+<section class="hero">
+  <h2>Calculadoras Online</h2>
+  <p>Resolva cálculos de matemática, escola e situações do dia a dia sem complicação.</p>
+
+  <div class="searchbox">
+    <span class="search-icon">🔎</span>
+    <input id="search" type="search" placeholder="🔎 Pesquisar calculadora..." aria-label="Pesquisar calculadora">
+  </div>
+</section>
+
+<section id="calculadoras" class="grid">
+
+<article class="card tool" data-name="porcentagem percentual">
+  <span class="badge">Matemática</span>
+  <h2>📊 Porcentagem</h2>
+  <p class="desc">Descubra quanto uma porcentagem representa de um número.</p>
+
+  <label for="pValor">Número</label>
+  <input id="pValor" type="number" step="any" placeholder="Ex.: 200">
+
+  <label for="pPct">Porcentagem (%)</label>
+  <input id="pPct" type="number" step="any" placeholder="Ex.: 15">
+
+  <div class="actions">
+    <button class="btn" onclick="calcPorcentagem()">Calcular</button>
+    <button class="btn secondary" onclick="limpar('pValor','pPct','rPct')">Limpar</button>
+  </div>
+
+  <div id="rPct" class="result"></div>
+</article>
+
+
+<article class="card tool" data-name="regra de tres proporção">
+  <span class="badge">Matemática</span>
+  <h2>🔢 Regra de 3</h2>
+  <p class="desc">Resolva proporções simples: A está para B assim como C está para X.</p>
+
+  <div class="row">
+    <div>
+      <label for="r3a">A</label>
+      <input id="r3a" type="number" step="any" placeholder="2">
+    </div>
+
+    <div>
+      <label for="r3b">B</label>
+      <input id="r3b" type="number" step="any" placeholder="10">
+    </div>
+  </div>
+
+  <label for="r3c">C</label>
+  <input id="r3c" type="number" step="any" placeholder="5">
+
+  <div class="actions">
+    <button class="btn" onclick="calcRegra3()">Calcular X</button>
+    <button class="btn secondary" onclick="limpar('r3a','r3b','r3c','rR3')">Limpar</button>
+  </div>
+
+  <div id="rR3" class="result"></div>
+</article>
+
+
+<article class="card tool" data-name="pitagoras teorema triangulo hipotenusa">
+  <span class="badge">Geometria</span>
+  <h2>📐 Pitágoras</h2>
+  <p class="desc">Calcule a hipotenusa de um triângulo retângulo.</p>
+
+  <label for="catA">Cateto A</label>
+  <input id="catA" type="number" step="any" placeholder="3">
+
+  <label for="catB">Cateto B</label>
+  <input id="catB" type="number" step="any" placeholder="4">
+
+  <div class="actions">
+    <button class="btn" onclick="calcPitagoras()">Calcular</button>
+    <button class="btn secondary" onclick="limpar('catA','catB','rPita')">Limpar</button>
+  </div>
+
+  <div id="rPita" class="result"></div>
+</article>
+
+
+<article class="card tool" data-name="desconto preço promoção">
+  <span class="badge">Dia a dia</span>
+  <h2>💰 Desconto</h2>
+  <p class="desc">Calcule o valor do desconto e o preço final.</p>
+
+  <label for="preco">Preço original</label>
+  <input id="preco" type="number" step="any" placeholder="100">
+
+  <label for="descPct">Desconto (%)</label>
+  <input id="descPct" type="number" step="any" placeholder="20">
+
+  <div class="actions">
+    <button class="btn" onclick="calcDesconto()">Calcular</button>
+    <button class="btn secondary" onclick="limpar('preco','descPct','rDesc')">Limpar</button>
+  </div>
+
+  <div id="rDesc" class="result"></div>
+</article>
+    <article class="card tool" data-name="bhaskara equação segundo grau delta">
+      <span class="badge">Matemática</span>
+      <h2>🧮 Bhaskara</h2>
+      <p class="desc">Resolva equações do segundo grau ax² + bx + c = 0.</p>
+      <div class="row">
+        <div><label for="ba">a</label><input id="ba" type="number" step="any" placeholder="1"></div>
+        <div><label for="bb">b</label><input id="bb" type="number" step="any" placeholder="-5"></div>
+      </div>
+      <label for="bc">c</label><input id="bc" type="number" step="any" placeholder="6">
+      <div class="actions">
+        <button class="btn" onclick="calcBhaskara()">Calcular</button>
+        <button class="btn secondary" onclick="limpar('ba','bb','bc','rBha')">Limpar</button>
+      </div>
+      <div id="rBha" class="result"></div>
+    </article>
+
+    <article class="card tool" data-name="média escolar media aritmética">
+      <span class="badge">Estudos</span>
+      <h2>🎓 Média Escolar</h2>
+      <p class="desc">Calcule a média aritmética de até quatro notas.</p>
+
+      <div class="row">
+        <div>
+          <label for="n1">Nota 1</label>
+          <input id="n1" type="number" step="any" placeholder="7">
+        </div>
+        <div>
+          <label for="n2">Nota 2</label>
+          <input id="n2" type="number" step="any" placeholder="8">
+        </div>
+      </div>
+
+      <div class="row">
+        <div>
+          <label for="n3">Nota 3</label>
+          <input id="n3" type="number" step="any" placeholder="9">
+        </div>
+        <div>
+          <label for="n4">Nota 4</label>
+          <input id="n4" type="number" step="any" placeholder="Opcional">
+        </div>
+      </div>
+
+      <div class="actions">
+        <button class="btn" onclick="calcMedia()">Calcular</button>
+        <button class="btn secondary" onclick="limpar('n1','n2','n3','n4','rMedia')">Limpar</button>
+      </div>
+
+      <div id="rMedia" class="result"></div>
+    </article>
+
+    <article class="card tool" data-name="juros simples juros">
+      <span class="badge">Financeiro</span>
+      <h2>💵 Juros Simples</h2>
+      <p class="desc">Calcule juros e montante com J = C × i × t.</p>
+
+      <label for="jsC">Capital (R$)</label>
+      <input id="jsC" type="number" step="any" placeholder="1000">
+
+      <label for="jsI">Taxa (% por período)</label>
+      <input id="jsI" type="number" step="any" placeholder="2">
+
+      <label for="jsT">Tempo</label>
+      <input id="jsT" type="number" step="any" placeholder="5">
+
+      <div class="actions">
+        <button class="btn" onclick="calcJurosSimples()">Calcular</button>
+        <button class="btn secondary" onclick="limpar('jsC','jsI','jsT','rJS')">Limpar</button>
+      </div>
+
+      <div id="rJS" class="result"></div>
+    </article>
+
+    <article class="card tool" data-name="juros compostos juros investimento">
+      <span class="badge">Financeiro</span>
+      <h2>📈 Juros Compostos</h2>
+      <p class="desc">Calcule montante com M = C × (1+i)ᵗ.</p>
+
+      <label for="jcC">Capital (R$)</label>
+      <input id="jcC" type="number" step="any" placeholder="1000">
+
+      <label for="jcI">Taxa (% por período)</label>
+      <input id="jcI" type="number" step="any" placeholder="2">
+
+      <label for="jcT">Tempo</label>
+      <input id="jcT" type="number" step="any" placeholder="5">
+
+      <div class="actions">
+        <button class="btn" onclick="calcJurosCompostos()">Calcular</button>
+        <button class="btn secondary" onclick="limpar('jcC','jcI','jcT','rJC')">Limpar</button>
+      </div>
+
+      <div id="rJC" class="result"></div>
+    </article>
+
+    <article class="card tool" data-name="área retângulo quadrado geometria">
+      <span class="badge">Geometria</span>
+      <h2>▭ Área do Retângulo</h2>
+      <p class="desc">Área = base × altura.</p>
+
+      <label for="arB">Base</label>
+      <input id="arB" type="number" step="any" placeholder="10">
+
+      <label for="arH">Altura</label>
+      <input id="arH" type="number" step="any" placeholder="5">
+
+      <div class="actions">
+        <button class="btn" onclick="calcAreaRet()">Calcular</button>
+        <button class="btn secondary" onclick="limpar('arB','arH','rAr')">Limpar</button>
+      </div>
+
+      <div id="rAr" class="result"></div>
+    </article>
+        <article class="card tool" data-name="área triângulo geometria">
+      <span class="badge">Geometria</span>
+      <h2>🔺 Área do Triângulo</h2>
+      <p class="desc">Área = (base × altura) ÷ 2.</p>
+
+      <label for="atB">Base</label>
+      <input id="atB" type="number" step="any" placeholder="10">
+
+      <label for="atH">Altura</label>
+      <input id="atH" type="number" step="any" placeholder="6">
+
+      <div class="actions">
+        <button class="btn" onclick="calcAreaTri()">Calcular</button>
+        <button class="btn secondary" onclick="limpar('atB','atH','rAt')">Limpar</button>
+      </div>
+
+      <div id="rAt" class="result"></div>
+    </article>
+
+    <article class="card tool" data-name="área círculo circunferência geometria">
+      <span class="badge">Geometria</span>
+      <h2>⭕ Área do Círculo</h2>
+      <p class="desc">Área = π × raio².</p>
+
+      <label for="raio">Raio</label>
+      <input id="raio" type="number" step="any" placeholder="5">
+
+      <div class="actions">
+        <button class="btn" onclick="calcCirculo()">Calcular</button>
+        <button class="btn secondary" onclick="limpar('raio','rCirc')">Limpar</button>
+      </div>
+
+      <div id="rCirc" class="result"></div>
+    </article>
+
+    <article class="card tool" data-name="perímetro quadrado geometria">
+      <span class="badge">Geometria</span>
+      <h2>⬜ Perímetro do Quadrado</h2>
+      <p class="desc">Perímetro = 4 × lado.</p>
+
+      <label for="lado">Lado</label>
+      <input id="lado" type="number" step="any" placeholder="5">
+
+      <div class="actions">
+        <button class="btn" onclick="calcPerQuadrado()">Calcular</button>
+        <button class="btn secondary" onclick="limpar('lado','rPer')">Limpar</button>
+      </div>
+
+      <div id="rPer" class="result"></div>
+    </article>
+
+    <article class="card tool" data-name="velocidade distância tempo física">
+      <span class="badge">Física</span>
+      <h2>🚗 Velocidade</h2>
+      <p class="desc">Calcule velocidade média = distância ÷ tempo.</p>
+
+      <label for="dist">Distância</label>
+      <input id="dist" type="number" step="any" placeholder="100">
+
+      <label for="tempo">Tempo</label>
+      <input id="tempo" type="number" step="any" placeholder="2">
+
+      <div class="actions">
+        <button class="btn" onclick="calcVelocidade()">Calcular</button>
+        <button class="btn secondary" onclick="limpar('dist','tempo','rVel')">Limpar</button>
+      </div>
+
+      <div id="rVel" class="result"></div>
+    </article>
+
+    <article class="card tool" data-name="temperatura celsius fahrenheit kelvin conversor">
+      <span class="badge">Conversor</span>
+      <h2>🌡️ Temperatura</h2>
+      <p class="desc">Converta entre Celsius, Fahrenheit e Kelvin.</p>
+
+      <label for="tempVal">Valor</label>
+      <input id="tempVal" type="number" step="any" placeholder="25">
+
+      <div class="row">
+        <div>
+          <label for="tempOrig">De</label>
+          <select id="tempOrig">
+            <option>C</option>
+            <option>F</option>
+            <option>K</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="tempDest">Para</label>
+          <select id="tempDest">
+            <option>F</option>
+            <option>C</option>
+            <option>K</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button class="btn" onclick="calcTemp()">Converter</button>
+        <button class="btn secondary" onclick="limpar('tempVal','rTemp')">Limpar</button>
+      </div>
+
+      <div id="rTemp" class="result"></div>
+    </article>
+
+    <article class="card tool" data-name="comprimento metros centímetros quilômetros conversor">
+      <span class="badge">Conversor</span>
+      <h2>📏 Comprimento</h2>
+      <p class="desc">Converta metros, centímetros e quilômetros.</p>
+
+      <label for="lenVal">Valor</label>
+      <input id="lenVal" type="number" step="any" placeholder="100">
+
+      <div class="row">
+        <div>
+          <label for="lenOrig">De</label>
+          <select id="lenOrig">
+            <option value="m">m</option>
+            <option value="cm">cm</option>
+            <option value="km">km</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="lenDest">Para</label>
+          <select id="lenDest">
+            <option value="cm">cm</option>
+            <option value="m">m</option>
+            <option value="km">km</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button class="btn" onclick="calcComprimento()">Converter</button>
+        <button class="btn secondary" onclick="limpar('lenVal','rLen')">Limpar</button>
+      </div>
+
+      <div id="rLen" class="result"></div>
+    </article>
+
+  </section>
+
+  <div id="emptyState" class="empty-state">
+    🔎 Nenhuma calculadora encontrada.<br>
+    Teste outro termo.
+  </div>
+
+  <section id="explicacoes" class="section">
+    <h2>📚 Entenda os cálculos</h2>
+
+    <p><strong>Porcentagem:</strong> valor × percentual ÷ 100.</p>
+
+    <p><strong>Regra de 3:</strong> em A/B = C/X, X = B × C ÷ A.</p>
+
+    <p><strong>Pitágoras:</strong> em um triângulo retângulo, a hipotenusa ao quadrado é a soma dos quadrados dos catetos.</p>
+
+    <p><strong>Bhaskara:</strong> Δ = b² − 4ac e x = (−b ± √Δ) ÷ 2a.</p>
+
+    <p><strong>Média:</strong> soma das notas dividida pela quantidade de notas.</p>
+
+    <p><strong>Juros simples:</strong> J = C × i × t.</p>
+
+    <p><strong>Juros compostos:</strong> M = C × (1 + i)ᵗ.</p>
+  </section>
+    <section id="faq" class="section faq">
+    <h2>❓ Perguntas frequentes</h2>
+
+    <details>
+      <summary>As calculadoras são gratuitas?</summary>
+      <p>Sim. O CalculaFácil foi criado para oferecer ferramentas gratuitas e fáceis de usar.</p>
+    </details>
+
+    <details>
+      <summary>Posso usar as calculadoras no celular?</summary>
+      <p>Sim. O layout é responsivo e foi pensado para telas pequenas e computadores.</p>
+    </details>
+
+    <details>
+      <summary>Os resultados substituem uma orientação profissional?</summary>
+      <p>Não. As ferramentas servem para cálculos e aprendizado. Em assuntos financeiros, jurídicos, médicos ou técnicos, confirme informações importantes com uma fonte qualificada.</p>
+    </details>
+  </section>
+
+  <section id="sobre" class="section">
+    <h2>ℹ️ Sobre o CalculaFácil</h2>
+
+    <p>O CalculaFácil é um projeto de ferramentas online criado para facilitar estudos e cálculos cotidianos. As calculadoras funcionam diretamente no navegador, sem exigir instalação de aplicativo.</p>
+
+    <p>Os resultados devem ser conferidos quando o cálculo for importante.</p>
+  </section>
+
+</main>
+
+<footer>
+  <strong>🧮 CalculaFácil</strong>
+
+  <div class="footer-links">
+    <a href="#sobre">Sobre</a>
+    <a href="#faq">FAQ</a>
+  </div>
+
+  <p>© 2026 CalculaFácil — Calculadoras online gratuitas.</p>
+</footer>
+
+<button
+  id="topBtn"
+  onclick="window.scrollTo({top:0,behavior:'smooth'})"
+  aria-label="Voltar ao topo">
+  ↑
+</button>
+
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+<script>
+  const $ = id => document.getElementById(id);
+  const num = id => Number($(id).value);
+
+  function setResult(id, text, error=false){
+    const el=$(id);
+    el.innerHTML=text;
+    el.className='result '+(error?'error':'success');
+  }
+
+  function valid(...values){
+    return values.every(v=>Number.isFinite(v));
+  }
+
+  function limpar(...ids){
+    ids.forEach(id=>{
+      const el=$(id);
+      if(el){
+        if(el.tagName==='DIV') el.innerHTML='';
+        else el.value='';
+      }
+    });
+  }
+
+  function calcPorcentagem(){
+    const v=num('pValor'), p=num('pPct');
+
+    if(!valid(v,p)){
+      return setResult('rPct','⚠️ Preencha os dois campos.',true)
+    }
+
+    setResult(
+      'rPct',
+      `${p}% de ${v} = <strong>${(v*p/100).toLocaleString('pt-BR')}</strong>`
+    );
+  }
+
+  function calcRegra3(){
+    const a=num('r3a'), b=num('r3b'), c=num('r3c');
+
+    if(!valid(a,b,c)||a===0)
+      return setResult(
+        'rR3',
+        '⚠️ Use valores válidos e A diferente de zero.',
+        true
+      );
+
+    setResult(
+      'rR3',
+      `X = <strong>${(b*c/a).toLocaleString('pt-BR')}</strong>`
+    );
+  }
+
+  function calcPitagoras(){
+    const a=num('catA'), b=num('catB');
+
+    if(!valid(a,b)||a<0||b<0)
+      return setResult(
+        'rPita',
+        '⚠️ Digite catetos válidos.',
+        true
+      );
+
+    setResult(
+      'rPita',
+      `Hipotenusa = <strong>${Math.hypot(a,b).toLocaleString('pt-BR',{maximumFractionDigits:4})}</strong>`
+    );
+  }
+
+  function calcDesconto(){
+    const p=num('preco'), d=num('descPct');
+
+    if(!valid(p,d)||p<0||d<0||d>100)
+      return setResult(
+        'rDesc',
+        '⚠️ Use preço ≥ 0 e desconto entre 0% e 100%.',
+        true
+      );
+
+    const vd=p*d/100;
+    const pf=p-vd;
+
+    setResult(
+      'rDesc',
+      `Desconto: <strong>R$ ${vd.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2})}</strong><br>Preço final: <strong>R$ ${pf.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2})}</strong>`
+    );
+  }
+
+  function calcBhaskara(){
+    const a=num('ba'),b=num('bb'),c=num('bc');
+
+    if(!valid(a,b,c)||a===0)
+      return setResult(
+        'rBha',
+        '⚠️ Em uma equação de 2º grau, a precisa ser diferente de zero.',
+        true
+      );
+
+    const d=b*b-4*a*c;
+
+    if(d<0)
+      return setResult(
+        'rBha',
+        `Δ = <strong>${d}</strong>. Não há raízes reais.`
+      );
+
+    const x1=(-b+Math.sqrt(d))/(2*a);
+    const x2=(-b-Math.sqrt(d))/(2*a);
+
+    setResult(
+      'rBha',
+      `Δ = <strong>${d}</strong><br>x₁ = <strong>${x1.toLocaleString('pt-BR')}</strong><br>x₂ = <strong>${x2.toLocaleString('pt-BR')}</strong>`
+    );
+  }
+
+  function calcMedia(){
+    const vals=['n1','n2','n3','n4']
+      .map(id=>$(id).value.trim())
+      .filter(v=>v!=='')
+      .map(Number);
+
+    if(!vals.length||!vals.every(Number.isFinite))
+      return setResult(
+        'rMedia',
+        '⚠️ Digite pelo menos uma nota válida.',
+        true
+      );
+
+    const m=vals.reduce((a,b)=>a+b,0)/vals.length;
+
+    setResult(
+      'rMedia',
+      `Média = <strong>${m.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2})}</strong>`
+    );
+  }
+
+  function calcJurosSimples(){
+    const c=num('jsC'),i=num('jsI'),t=num('jsT');
+
+    if(!valid(c,i,t)||c<0||i<0||t<0)
+      return setResult(
+        'rJS',
+        '⚠️ Digite valores válidos.',
+        true
+      );
+
+    const j=c*(i/100)*t;
+    const m=c+j;
+
+    setResult(
+      'rJS',
+      `Juros: <strong>R$ ${j.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2})}</strong><br>Montante: <strong>R$ ${m.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2})}</strong>`
+    );
+  }
+
+  function calcJurosCompostos(){
+    const c=num('jcC'),i=num('jcI'),t=num('jcT');
+
+    if(!valid(c,i,t)||c<0||i<0||t<0)
+      return setResult(
+        'rJC',
+        '⚠️ Digite valores válidos.',
+        true
+      );
+
+    const m=c*Math.pow(1+i/100,t);
+    const j=m-c;
+
+    setResult(
+      'rJC',
+      `Juros: <strong>R$ ${j.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2})}</strong><br>Montante: <strong>R$ ${m.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2})}</strong>`
+    );
+  }
+
+  function calcAreaRet(){
+    const b=num('arB'),h=num('arH');
+
+    if(!valid(b,h)||b<0||h<0)
+      return setResult(
+        'rAr',
+        '⚠️ Digite medidas válidas.',
+        true
+      );
+
+    setResult(
+      'rAr',
+      `Área = <strong>${(b*h).toLocaleString('pt-BR')}</strong> unidades²`
+    );
+  }
+
+  function calcAreaTri(){
+    const b=num('atB'),h=num('atH');
+
+    if(!valid(b,h)||b<0||h<0)
+      return setResult(
+        'rAt',
+        '⚠️ Digite medidas válidas.',
+        true
+      );
+
+    setResult(
+      'rAt',
+      `Área = <strong>${(b*h/2).toLocaleString('pt-BR')}</strong> unidades²`
+    );
+  }
+
+  function calcCirculo(){
+    const r=num('raio');
+
+    if(!valid(r)||r<0)
+      return setResult(
+        'rCirc',
+        '⚠️ Digite um raio válido.',
+        true
+      );
+
+    setResult(
+      'rCirc',
+      `Área = <strong>${(Math.PI*r*r).toLocaleString('pt-BR',{maximumFractionDigits:4})}</strong> unidades²`
+    );
+  }
+
+  function calcPerQuadrado(){
+    const l=num('lado');
+
+    if(!valid(l)||l<0)
+      return setResult(
+        'rPer',
+        '⚠️ Digite um lado válido.',
+        true
+      );
+
+    setResult(
+      'rPer',
+      `Perímetro = <strong>${(4*l).toLocaleString('pt-BR')}</strong> unidades`
+    );
+  }
+
+  function calcVelocidade(){
+    const d=num('dist'),t=num('tempo');
+
+    if(!valid(d,t)||d<0||t<=0)
+      return setResult(
+        'rVel',
+        '⚠️ A distância deve ser ≥ 0 e o tempo deve ser maior que zero.',
+        true
+      );
+
+    setResult(
+      'rVel',
+      `Velocidade média = <strong>${(d/t).toLocaleString('pt-BR')}</strong> unidades de distância por unidade de tempo`
+    );
+  }
+
+  function calcTemp(){
+    const v=num('tempVal');
+    const o=$('tempOrig').value;
+    const d=$('tempDest').value;
+
+    if(!valid(v))
+      return setResult(
+        'rTemp',
+        '⚠️ Digite um valor válido.',
+        true
+      );
+
+    let c=o==='C'
+      ?v
+      :o==='F'
+      ?(v-32)*5/9
+      :v-273.15;
+
+    let r=d==='C'
+      ?c
+      :d==='F'
+      ?c*9/5+32
+      :c+273.15;
+
+    setResult(
+      'rTemp',
+      `<strong>${v} °${o}</strong> = <strong>${r.toLocaleString('pt-BR',{maximumFractionDigits:4})} °${d}</strong>`
+    );
+  }
+
+  function calcComprimento(){
+    const v=num('lenVal');
+    const o=$('lenOrig').value;
+    const d=$('lenDest').value;
+
+    if(!valid(v))
+      return setResult(
+        'rLen',
+        '⚠️ Digite um valor válido.',
+        true
+      );
+
+    const fator={
+      m:1,
+      cm:.01,
+      km:1000
+    };
+
+    const r=v*fator[o]/fator[d];
+
+    setResult(
+      'rLen',
+      `<strong>${v} ${o}</strong> = <strong>${r.toLocaleString('pt-BR',{maximumFractionDigits:6})} ${d}</strong>`
+    );
+  }
+
+  $('search').addEventListener('input',e=>{
+    const q=e.target.value.toLowerCase().trim();
+
+    document.querySelectorAll('.tool').forEach(card=>{
+      card.classList.toggle(
+        'hidden',
+        q && !card.dataset.name.toLowerCase().includes(q)
+      );
+    });
+  });
+
+  function toggleTheme(){
+    const root=document.documentElement;
+    const dark=root.getAttribute('data-theme')==='dark';
+
+    root.setAttribute(
+      'data-theme',
+      dark?'light':'dark'
+    );
+
+    localStorage.setItem(
+      'calc-theme',
+      dark?'light':'dark'
+    );
+
+    $('themeBtn').textContent=
+      dark?'🌙 Tema':'☀️ Tema claro';
+  }
+
+  if(localStorage.getItem('calc-theme')==='dark'){
+    document.documentElement.setAttribute(
+      'data-theme',
+      'dark'
+    );
+
+    $('themeBtn').textContent='☀️ Tema claro';
+  }
+
+  window.addEventListener('scroll',()=>{
+    $('topBtn').style.display=
+      scrollY>500?'block':'none';
+  });
+
+  const originalSetResult = setResult;
+
+  setResult = function(id,text,error=false){
+    originalSetResult(id,text,error);
+
+    if(!error)
+      showToast("✅ Resultado calculado!");
+  };
+
+  function showToast(message){
+    const t=$('toast');
+
+    if(!t)return;
+
+    t.textContent=message;
+    t.classList.add('show');
+
+    clearTimeout(window._toastTimer);
+
+    window._toastTimer=
+      setTimeout(
+        ()=>t.classList.remove('show'),
+        1800
+      );
+  }
+
+  function focusCalc(term){
+    const card=[
+      ...document.querySelectorAll('.tool')
+    ].find(c=>
+      (c.dataset.name||'')
+      .toLowerCase()
+      .includes(term)
+    );
+
+    if(card){
+      card.scrollIntoView({
+        behavior:'smooth',
+        block:'center'
+      });
+
+      card.animate(
+        [
+          {transform:'scale(1)'},
+          {transform:'scale(1.025)'},
+          {transform:'scale(1)'}
+        ],
+        {duration:450}
+      );
+    }
+  }
+
+  // Pesquisa com mensagem de "nenhum resultado".
+  const oldSearch=$('search');
+
+  if(oldSearch){
+    oldSearch.addEventListener('input',()=>{
+      const visible=[
+        ...document.querySelectorAll('.tool')
+      ].filter(c=>
+        !c.classList.contains('hidden')
+      ).length;
+
+      $('emptyState').style.display=
+        visible?'none':'block';
+    });
+  }
+
+  // Atalho Enter para calcular dentro dos cards.
+  document.querySelectorAll('.tool').forEach(card=>{
+    card.addEventListener('keydown',e=>{
+      if(
+        e.key==='Enter' &&
+        e.target.matches('input,select')
+      ){
+        const btn=
+          card.querySelector('.actions button');
+
+        if(btn)btn.click();
+      }
+    });
+  });
+
+  // Copiar resultado com duplo clique.
+  document.querySelectorAll('.result').forEach(el=>{
+    el.title='Toque duas vezes para copiar';
+
+    el.addEventListener('dblclick',async()=>{
+      const text=el.innerText.trim();
+
+      if(!text)return;
+
+      try{
+        await navigator.clipboard.writeText(text);
+        showToast('📋 Resultado copiado!');
+      }catch(e){
+        showToast(
+          'Não foi possível copiar automaticamente.'
+        );
+      }
+    });
+  });
+
+  // Pequena melhoria de acessibilidade no tema.
+  function updateThemeLabel(){
+    const dark=
+      document.documentElement
+      .getAttribute('data-theme')==='dark';
+
+    if($('themeBtn')){
+      $('themeBtn').setAttribute(
+        'aria-label',
+        dark
+          ?'Ativar tema claro'
+          :'Ativar tema escuro'
+      );
+    }
+  }
+
+  updateThemeLabel();
+
+  const oldToggleTheme=toggleTheme;
+
+  toggleTheme=function(){
+    oldToggleTheme();
+    updateThemeLabel();
+  };
+
+</script>
+
+</body>
+</html>
